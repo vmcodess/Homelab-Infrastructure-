@@ -66,3 +66,7 @@ Devices (PC / Phone)
 - [ ] Grafana + InfluxDB dashboards for sensor data
 - [ ] Home Assistant integration
 - [ ] Vaultwarden password manager
+
+
+### Uptime Kuma Monitoring
+![Uptime Kuma](screenshots/uptime-kuma-dashboard.png)
