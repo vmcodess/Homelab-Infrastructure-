@@ -22,5 +22,4 @@
 - Uses socket proxy instead of exposing Docker socket directly for improved security
 
 
-### Discord Alert
-![discord_alert](../screenshots/discord_alert.png)
+
