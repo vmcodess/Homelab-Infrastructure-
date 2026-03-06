@@ -15,7 +15,9 @@ This project documents the design and deployment of a self-hosted infrastructure
 ## Architecture
 
 Laptop / Phone
+
         ↓
+        
    Tailscale VPN
         ↓
    Ubuntu Server
