@@ -1,41 +1,68 @@
-# Homelab Infrastructure Project
+# Home Lab Infrastructure
 
-This project documents the design and deployment of a self-hosted infrastructure environment built to gain hands-on experience with Linux systems, containerization, storage management, and secure networking.
+A self-hosted home server built to gain hands-on experience with Linux 
+systems administration, containerization, storage management, and secure networking.
 
-## Technologies
+## Hardware
 
-- Ubuntu Server
-- Docker
-- RAID (mdadm)
-- Cosmos
-- Immich
-- Tailscale
-- Uptime Kuma
+| Component | Details |
+|-----------|---------|
+| OS Drive | 500GB SSD |
+| Storage | 2x 4TB HDD in RAID1 (3.6TB usable) |
+| Backup | 1TB HDD |
+| RAM | 16GB |
 
 ## Architecture
-
-Laptop / Phone
-
-        ↓
-        
+```
+Devices (PC / Phone)
+        │
    Tailscale VPN
-        ↓
-   Ubuntu Server
-        ↓
+        │
+   Ubuntu Server 24.04
+        │
       Docker
-        ↓
-      Cosmos
-   ├── Immich (Photo backup)
-   └── Uptime Kuma (Monitoring)
+        │
+      Cosmos (Reverse Proxy)
+        ├── Nextcloud (Personal Cloud Storage)
+        ├── Immich (Photo Backup)
+        ├── Uptime Kuma (Service Monitoring)
+        └── Netdata (System Metrics)
+```
 
-## Storage
+## Services
 
-500GB SSD
-→ OS
+| Service | Purpose | Status |
+|---------|---------|--------|
+| Nextcloud | Personal cloud storage | ✅ Running |
+| Immich | Photo & video backup | ✅ Running |
+| Uptime Kuma | Uptime monitoring + Discord alerts | ✅ Running |
+| Netdata | Real-time system metrics | ✅ Running |
 
-RAID1 (2×4TB)
-→ Application storage
-→ Photo uploads
+## Storage Layout
 
-1TB HDD
-→ Database backups
+- `/` — 500GB SSD (OS + Docker)
+- `/mnt/storage` — 3.6TB RAID1 (all application data)
+- `/mnt/backup` — 1TB HDD (Restic automated backups)
+
+## Security
+
+- Remote access via Tailscale VPN (no exposed public ports)
+- Network-wide DNS filtering via AdGuard Home
+- Automated offsite-style backups with Restic
+
+## Lessons Learned
+
+- Diagnosed Cosmos reverse proxy failures caused by host-network mode 
+  preventing Docker hostname resolution
+- Resolved Redis authentication mismatches between containers after 
+  network sandbox corruption
+- Learned the importance of separating OS storage from application data
+- Understood security implications of exposing Docker sockets vs 
+  using a socket proxy
+
+## Planned Additions
+
+- [ ] IoT air quality monitoring (SCD41 + PM2.5 sensor on Raspberry Pi)
+- [ ] Grafana + InfluxDB dashboards for sensor data
+- [ ] Home Assistant integration
+- [ ] Vaultwarden password manager
