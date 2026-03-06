@@ -10,7 +10,7 @@
 
 **Data location:** `/mnt/storage/nextcloud-data` (RAID1)
 
-**Access:** `http://100.78.185.21:7353` via Tailscale
+**Access:** `http://100.x.x.x:PORT` via Tailscale
 
 ## Issues Encountered
 - Reverse proxy couldn't resolve Docker hostnames due to host-network mode
