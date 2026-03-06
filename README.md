@@ -69,4 +69,4 @@ Devices (PC / Phone)
 
 
 ### Uptime Kuma Monitoring
-![Uptime Kuma](screenshots/uptime-kuma-dashboard.png)
+![Uptime Kuma](screenshots/uptime_kuma_dashboard.png)
